@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar Monitoring System</title>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="max-w-[85%] m-auto">
+    <h1 class="my-8 text-2xl text-center font-bold">Real-time Monitoring and Fault Detection of Solar Photovoltaic Array using IoT-Enabled Sensor Networks.</h1>
+
+    <div id="sl" class="alert alert-warning my-4 p-2 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+      <span>Low Light Detected</span>
+    </div>
+
+    <div id="sc" class="alert alert-error my-4 p-2 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span>Short Circuit Fault Detected</span>
+    </div>
+
+    <div id="oc" class="alert alert-error my-4 p-2 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span>Open Circuit fault Detected</span>
+    </div>
+
+    <div class="alert alert-info my-4 p-2 rounded-lg flex">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <span>Environmental Data</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Light</div>
+          <div id="light" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Temperature</div>
+          <div id="temperature" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Humidity</div>
+          <div id="humidity" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 mb-4 alert alert-info p-2 rounded-lg flex">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+
+      <span>Solar Data</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Current</div>
+          <div id="current" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Voltage</div>
+          <div id="voltage" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+      <div class="stats shadow-lg">
+        <div class="stat text-center">
+          <div class="stat-title text-black text-lg bg-teal-200 p-1 rounded-md">Power</div>
+          <div id="power" class="stat-value text-5xl p-4">100%</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

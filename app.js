@@ -10,6 +10,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+const beepSound = new Audio("beep-01a.mp3");
+
 // Get a reference to the database service
 var database = firebase.database();
 
@@ -38,6 +40,22 @@ function updateData(data) {
   } else {
     document.getElementById("oc").style.display = "none";
   }
+
+  if ((data.Voltage < 1 && data.Light > 20) || (data.Current < 1 && data.Light > 20)) {
+    startBeep();
+  } else {
+    stopBeep();
+  }
+}
+
+function startBeep() {
+  beepSound.loop = true;
+  beepSound.play();
+}
+
+function stopBeep() {
+  beepSound.pause();
+  beepSound.currentTime = 0;
 }
 
 // Function to listen for data changes in Firebase database
